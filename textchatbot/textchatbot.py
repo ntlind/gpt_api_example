@@ -1,6 +1,6 @@
 import os
 import openai
-from typing import List
+from typing import List, Optional
 
 
 class TextChatBot:
@@ -13,8 +13,10 @@ class TextChatBot:
     :return: A list of answers, one for each of the user's questions
     """
 
-    def __new__(cls, input_text: str, questions: List[str]):
-        """Allow this class to be called like a function, or instantiated like a class."""
+    def __new__(
+        cls, input_text: Optional[str] = None, questions: Optional[List[str]] = None
+    ):
+        """Allow this class to be called like a function, or instantiated like a class"""
         instance = super().__new__(cls)
         if not input_text and not questions:
             return instance
@@ -28,9 +30,13 @@ class TextChatBot:
             input_text, str
         ), f"Input text is of the wrong type; expected str but got {type(input_text).__name__}"
 
+        assert len(input_text) > 0, "You must provide input text."
+
         assert isinstance(
             questions, list
         ), f"Question list is of the wrong type; expected list but got {type(questions).__name__}"
+
+        assert len(questions) > 0, "You must ask at least one question."
 
         self._set_openai_api_key()
 
@@ -54,7 +60,7 @@ class TextChatBot:
 
         Answer the following question using only the context contained in the previous text: {question}
 
-        If the question above is unrelated to the question in the text, then respond with "out of scope". Otherwise, answer the question in one complete sentence.
+        If the question above is unrelated to the question in the text, then respond with "out of scope". Otherwise, answer the question in one complete sentence. 
         """
 
     def _query_gpt(self, input_text: str, question: str) -> str:
@@ -74,4 +80,8 @@ class TextChatBot:
 
         answer = response.choices[0].message.content
 
-        return answer
+        # prevent GPT from returning 'out of scope' in a complete sentence
+        if "out of scope" in answer.lower():
+            return "out of scope"
+        else:
+            return answer

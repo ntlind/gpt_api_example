@@ -1,3 +1,36 @@
+# ChatGPT API Example
+## Overview
+In this repository, we create a new class (TextChatBot) that takes a) a string of input text and b) a list of questions before returning a list of answers to all of the user's questions. If a given question isn't answerable using only the input text, then TextChatBot returns "out of scope".
+
+Under-the-hood, TextChatBot transforms each question into a pre-formulated prompt before querying OpenAI's gpt-3.5-turbo model to retrieve the answer. Running this code requires a OpenAI API key (see "How to run this code yourself" for instructions).
+
+If we wanted to further improve this code, we could consider:
+- Combining all questions into a single query, rather than sending a separate request for each question (note: this approach would make us more likely to hit OpenAI's 2048 token limit, and may make it more difficult to parse GPT's output)
+- Using asyncio to run each question request asyncronously (note: unclear whether this would improve performance)
+- Run additional tests on other OpenAI models and/or third-party LLMs to compare results 
+
+## How to review this work
+
+I'd recommend reviewing the examples in [examples.ipynb]() to see how this code is intended to be used. If you're interested, you could then review the actual class implementation in [textchatbot.py]().
+
+## How to run this code yourself
+
+### Clone this repo and open it in Terminal
+
+```
+
+```
+
+### Install dependencies
+```
+pip install -r requirements.txt
+```
+
+### Add a .env file with your OpenAI API key
+
+### Run the code in examples.ipynb
+
+
 
 
 # Install dependencies

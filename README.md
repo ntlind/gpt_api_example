@@ -11,14 +11,15 @@ If we wanted to further improve this code, we could consider:
 
 ## How to review this work
 
-I'd recommend reviewing the examples in [examples.ipynb]() to see how this code is intended to be used. If you're interested, you could then review the actual class implementation in [textchatbot.py]().
+I'd recommend reviewing the examples in [examples.ipynb](https://github.com/ntlind/gpt_api_example/blob/main/examples.ipynb) to see how this code is intended to be used. If you're interested, you could then review the actual class implementation in [textchatbot.py](https://github.com/ntlind/gpt_api_example/blob/main/textchatbot/textchatbot.py).
 
 ## How to run this code yourself
 
 ### Clone this repo and open it in Terminal
 
 ```
-
+git clone https://github.com/ntlind/gpt_api_example
+cd gpt_api_eaxmple
 ```
 
 ### Install dependencies
@@ -27,10 +28,17 @@ pip install -r requirements.txt
 ```
 
 ### Add a .env file with your OpenAI API key
+'''
+vi .env
+'''
+
+Paste your API_KEY into the .env file, then close and save with :wq. Your .env file should look like this when finished:
+
+```
+API_KEY=<your API key here>
+```
 
 ### Run the code in examples.ipynb
-
-
-
-
-# Install dependencies
+```
+code examples.ipynb
+```

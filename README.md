@@ -32,7 +32,7 @@ pip install -r requirements.txt
 vi .env
 '''
 
-Paste your API_KEY into the .env file, then close and save with :wq. Your .env file should look like this when finished:
+Paste your (API_KEY)[https://platform.openai.com/account/api-keys] into the .env file, then close and save with :wq. Your .env file should look like this when finished:
 
 ```
 API_KEY=<your API key here>

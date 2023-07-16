@@ -1,4 +1,4 @@
-# ChatGPT API Example
+# GPT API Example
 ## Overview
 In this repository, we create a new class (TextChatBot) that takes a) a string of input text and b) a list of questions before returning a list of answers to all of the user's questions. If a given question isn't answerable using only the input text, then TextChatBot returns "out of scope".
 

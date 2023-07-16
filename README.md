@@ -6,7 +6,7 @@ Under-the-hood, TextChatBot transforms each question into a pre-formulated promp
 
 If we wanted to further optimize this class, we could consider:
 - Combining all questions into a single query, rather than sending a separate request for each question (note: this approach would make us more likely to hit OpenAI's 2048 token limit, and may make it more difficult to parse GPT's output)
-- Using asyncio to run each question request asyncronously (note: unclear whether this would improve performance)
+- Using asyncio to run each question request asyncronously (note: it's unclear whether spawning a new thread for each question would actually improve performance)
 - Run additional tests on other OpenAI models and/or third-party LLMs to compare results 
 
 ## How to review this work
@@ -28,11 +28,11 @@ pip install -r requirements.txt
 ```
 
 ### Add a .env file with your OpenAI API key
-'''
+```
 vi .env
-'''
+```
 
-Paste your (API_KEY)[https://platform.openai.com/account/api-keys] into the .env file, then close and save with :wq. Your .env file should look like this when finished:
+Paste your [API_KEY](https://platform.openai.com/account/api-keys) into the .env file, then close and save with :wq. Your .env file should look like this when finished:
 
 ```
 API_KEY=<your API key here>

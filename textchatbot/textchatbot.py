@@ -1,16 +1,6 @@
-# %%
 import os
 import openai
 from typing import List
-
-test_case = {
-    "input_text": "San Francisco and the surrounding San Francisco Bay Area are a global center of economic activity and the arts and sciences,[34][35] spurred by leading universities,[36] high-tech, healthcare, finance, insurance, real estate, and professional services sectors.[37] As of 2020, the metropolitan area, with 6.7 million residents, ranked 5th by GDP ($874 billion) and 2nd by GDP per capita ($131,082) across the OECD countries, ahead of global cities like Paris, London, and Singapore.[38][39][40] San Francisco anchors the 13th most populous metropolitan statistical area in the United States with 4.6 million residents, and the fourth-largest by aggregate income and economic output, with a GDP of $669 billion in 2021.[41] The wider San Jose–San Francisco–Oakland Combined Statistical Area is the fifth most populous, with 9.5 million residents, and the third-largest by economic output, with a GDP of $1.25 trillion in 2021. In the same year, San Francisco proper had a GDP of $236.4 billion, and a GDP per capita of $289,990.[41] San Francisco was ranked seventh in the world and third in the United States on the Global Financial Centres Index as of March 2022.",
-    "questions": [
-        "How many residents lived in San Francisco in 2020?",
-        "Which city had a greater GDP in 2020: Paris or San Francisco?",
-        "What's Nick's favorite color?",
-    ],
-}
 
 
 class TextChatBot:
@@ -23,7 +13,7 @@ class TextChatBot:
     :return: A list of answers, one for each of the user's questions
     """
 
-    def __new__(cls, input_text: str, questions: list):
+    def __new__(cls, input_text: str, questions: List[str]):
         """Allow this class to be called like a function, or instantiated like a class."""
         instance = super().__new__(cls)
         if not input_text and not questions:
@@ -31,7 +21,7 @@ class TextChatBot:
         else:
             return instance(input_text, questions)
 
-    def __call__(self, input_text: str, questions: list) -> list:
+    def __call__(self, input_text: str, questions: List[str]) -> List[str]:
         """Our main function: return a list of answers to a list of questions about some given input text"""
 
         assert isinstance(
@@ -51,12 +41,12 @@ class TextChatBot:
 
         return output
 
-    def _set_openai_api_key(self):
+    def _set_openai_api_key(self) -> None:
         """Set the OpenAI API key for use in the session."""
         API_KEY = os.getenv("API_KEY")
         openai.api_key = API_KEY
 
-    def _get_prompt_text(self, input_text: str, question: str):
+    def _get_prompt_text(self, input_text: str, question: str) -> str:
         """Transform the user's input_text and question into a formatted prompt that explains the rules for GPT's response"""
 
         return f"""
@@ -85,8 +75,3 @@ class TextChatBot:
         answer = response.choices[0].message.content
 
         return answer
-
-
-TextChatBot(test_case["input_text"], test_case["questions"])
-
-# %%

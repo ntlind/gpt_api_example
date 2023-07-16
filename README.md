@@ -8,7 +8,7 @@ If we wanted to further optimize this class, we could consider:
 - Combining all questions into a single query, rather than sending a separate request for each question (note: this approach would make us more likely to hit OpenAI's 2048 token limit, and may make it more difficult to parse GPT's output)
 - Using asyncio to run each question request asyncronously (note: it's unclear whether spawning a new thread for each question would actually improve performance)
 - Run additional tests on other OpenAI models and/or third-party LLMs to compare results
-  Turning the examples in [examples.ipynb](https://github.com/ntlind/gpt_api_example/blob/main/examples.ipynb) into formal tests where we check to be sure this class was correctly returning 'out of scope' where expected.
+- Turning the examples in [examples.ipynb](https://github.com/ntlind/gpt_api_example/blob/main/examples.ipynb) into formal tests where we check to be sure this class correctly returns 'out of scope' where expected.
 
 ## How to review this work
 

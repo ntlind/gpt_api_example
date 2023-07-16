@@ -4,7 +4,7 @@ In this repository, we create a new class (TextChatBot) that takes a) a string o
 
 Under-the-hood, TextChatBot transforms each question into a pre-formulated prompt before querying OpenAI's gpt-3.5-turbo model to retrieve the answer. Running this code requires a OpenAI API key (see "How to run this code yourself" for instructions).
 
-If we wanted to further improve this code, we could consider:
+If we wanted to further optimize this class, we could consider:
 - Combining all questions into a single query, rather than sending a separate request for each question (note: this approach would make us more likely to hit OpenAI's 2048 token limit, and may make it more difficult to parse GPT's output)
 - Using asyncio to run each question request asyncronously (note: unclear whether this would improve performance)
 - Run additional tests on other OpenAI models and/or third-party LLMs to compare results 
